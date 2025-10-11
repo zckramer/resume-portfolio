@@ -1,13 +1,21 @@
-import NavLink from "../NavLink/NavLink";
+import './NavBar.css';
+import {NavLink} from 'react-router-dom';
 
 const NavBar = () => {
-    const destinations = ['resume', 'portfolio', 'contact'];
+    const destinations = {
+        'resume': '/resume', 
+        'portfolio': '/portfolio',
+        'bloggish': '/bloggish', 
+        'contact': '/contact'
+    };
 
     return (
         <nav>
-            {destinations.map((dest: string, index: number) => (
-                <NavLink dest={dest} keyIndex={index.toString()}/>
-            ))}
+            <ul>
+                {Object.entries(destinations).map(([name, path]) => (
+                    <NavLink key={name} to={path}>{name}</NavLink>
+                ))}
+            </ul>
         </nav>
     );
 };
