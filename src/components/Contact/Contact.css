@@ -1,0 +1,42 @@
+.contact a {
+    transition: all 650ms ease-in-out;
+    text-decoration: none;
+    color: inherit;
+    padding: 4px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: none;
+}
+
+.contact a:hover {
+    transition: all 650ms ease-in-out;
+    border: 1px solid grey;
+    border-radius: 8px;
+    padding: 4px;
+    background: lightgray;
+    color: #000;
+}
+
+.contact a::selection {
+        border: 1px solid grey;
+        border-radius: 8px;
+        padding: 4px;
+        background: lightgray;
+        color: #000;
+}
+
+.contact p {
+    margin: 4px;
+    font-size: 2rem;
+    text-align: center;
+    gap: 8px;
+}
+
+.contact .contact-container {
+    border: 2px solid grey;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    display: flex;
+    flex-direction: column;
+}
