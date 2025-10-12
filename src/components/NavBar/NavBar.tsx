@@ -10,8 +10,8 @@ const NavBar = () => {
     };
 
     return (
-        <nav>
-            <ul>
+        <nav className='navbar'>
+            <ul className='nav'>
                 {Object.entries(destinations).map(([name, path]) => (
                     <NavLink key={name} to={path}>{name}</NavLink>
                 ))}

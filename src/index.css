@@ -1,13 +1,3 @@
-/* index.css */
-.nav { list-style: none; padding: 0; margin: 0; }
-.nav li { margin: 0.25rem 0; }
-
-a { color: inherit; text-decoration: none; text-align: center; text-justify: auto; font-size: large;}
-/* visible focus */
-a:focus { outline: 2px solid; font-size: larger;}
-
-/* optional: style active link (NavLink sets aria-current="page" automatically) */
-a[aria-current="page"] { text-decoration: none; background-color: #ddd; color: black; font-size: x-large;}
 
 /* skip link utility */
 .skip-link {
@@ -19,3 +9,4 @@ html {
   background-color: black;
   color: whitesmoke;
 }
+
