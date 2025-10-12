@@ -1,12 +1,13 @@
 import './NavBar.css';
 import {NavLink} from 'react-router-dom';
+import { ROUTE_PATHS } from '../../App';
 
 const NavBar = () => {
     const destinations = {
-        'resume': '/resume', 
-        'portfolio': '/portfolio',
-        'bloggish': '/bloggish', 
-        'contact': '/contact'
+        'resume': ROUTE_PATHS.RESUME, 
+        'portfolio': ROUTE_PATHS.PORTFOLIO,
+        'bloggish': ROUTE_PATHS.BLOGGISH, 
+        'contact': ROUTE_PATHS.CONTACT
     };
 
     return (
