@@ -1,0 +1,104 @@
+:root {
+  --bg: #0f0f0f;
+  --panel: #141414;
+  --text: #e6e6e6;
+  --muted: #a0a0a0;
+  --rule: #232323;
+  --tag-bg: #1e1e1e;
+  --tag-br: #2b2b2b;
+  --tag-fg: #cfcfcf;
+  --accent: #7aa2ff;      /* tweak to your brand hue */
+}
+
+.resume {
+  color: var(--text);
+  background: transparent;
+  max-width: 72ch;
+  margin: 0 auto;
+  padding: 2rem 1rem 6rem; /* extra bottom room for your sticky nav */
+  line-height: 1.65;
+}
+
+.resume__section + .resume__section {
+  margin-top: 2.25rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--rule);
+}
+
+.resume__h2 {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 0 0 .5rem 0;
+  letter-spacing: .2px;
+}
+
+.resume__h3 {
+  font-size: 1.125rem;
+  line-height: 1.3;
+  margin: 1.25rem 0 .25rem 0;
+  font-weight: 600;
+}
+
+.resume p { margin: .5rem 0; }
+
+.muted {
+  color: var(--muted);
+  font-size: .95rem;
+  margin-top: .25rem;
+}
+
+.resume__list {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: .5rem 0 0 0;
+}
+.resume__list li { margin: .4rem 0; }
+
+/* Tags */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: .6rem 0 .2rem;
+}
+.tag {
+  display: inline-block;
+  font-size: .8rem;
+  padding: .25rem .55rem;
+  border-radius: 9999px;
+  background: var(--tag-bg);
+  border: 1px solid var(--tag-br);
+  color: var(--tag-fg);
+  transition: transform 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+.tag:hover { border-color: var(--accent); color: #fff; }
+.tag:focus-visible {
+  outline: none;
+  transform: scale(1.05);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+/* Links inside content */
+.resume a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 50%, transparent);
+  transition: color 140ms ease, border-color 140ms ease;
+}
+.resume a:hover {
+  color: #ffffff;
+  border-bottom-color: #ffffff55;
+}
+
+/* Role header layout */
+.role__hdr {
+  display: flex;
+  align-items: baseline;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+.role__dates {
+  color: var(--muted);
+  font-size: .95rem;
+}
