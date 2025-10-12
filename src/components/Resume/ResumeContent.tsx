@@ -63,7 +63,7 @@ export default function ResumeContent() {
 
         <h3 className="resume__h3">Tools & Platforms</h3>
         <p>
-          Mono-repo Architectures, Design Thinking, Storytelling, Research Analysis,
+          Mono-repo Architectures, Design Thinking, Storybook, Research Analysis,
           Client Consultation, Digital Full Stack Development
         </p>
 
