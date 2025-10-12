@@ -1,11 +1,14 @@
-import React from 'react';
+import type { FC } from "react";
 
-const Contact: React.FC = () => {
+const Contact: FC = () => {
+
     return (
-        <div>
-            <h2>Contact</h2>
-            {/* Add your contact form or information here */}
-        </div>
+        <>
+            <h1>Contact</h1>
+                <br />
+                <p>Under Construction...</p>
+                <br />
+        </>
     );
 };
 

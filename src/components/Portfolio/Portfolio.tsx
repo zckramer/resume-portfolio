@@ -1,11 +1,8 @@
-interface PortfolioProps {
-    // Add props here if needed
-}
-
-const Portfolio: React.FC<PortfolioProps> = () => {
+const Portfolio: React.FC = () => {
     return (
         <div className="portfolio">
-            <h2>Portfolio</h2>
+            <h1>Portfolio</h1>
+            <p>Under Construction...</p>
             {/* Add portfolio content here */}
         </div>
     );

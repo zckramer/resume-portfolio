@@ -1,8 +1,8 @@
 const Bloggish: React.FC = () => {
     return (
-        <div>
+        <div className="bloggish">
             <h1>Bloggish Component</h1>
-            <p>This is the Bloggish component.</p>
+            <p>Under Construction...</p>
         </div>
     );
 };

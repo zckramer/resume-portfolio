@@ -2,7 +2,7 @@ export default function ResumeContent() {
   return (
     <article className="resume">
       <section className="resume__section">
-        <h2 className="resume__h2">About</h2>
+        <h2 className="resume__h2">About Zack Kramer</h2>
         <p>
           A <strong>full-stack developer</strong> with a passion for{" "}
           <strong>education</strong> and <strong>front-end development</strong>. A
