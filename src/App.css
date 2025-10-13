@@ -1,6 +1,43 @@
-#root {
-  max-width: 1280px;
+:root{
+  --nav-h-mobile: 56px;
+  --nav-h-desktop: 64px;
+  --content-max-w: 72ch;
+  --content-max-h: 1000px;
+
+  --bg: #0f0f0f;
+  --panel: #141414;
+  --text: #e6e6e6;
+  --muted: #a0a0a0;
+  --rule: #232323;
+  --nav-bg: rgba(18,18,18,.9);
+  --nav-br: #2a2a2a;
+  --nav-fg: #d6d6d6;
+  --nav-active: #ffffff;
+}
+
+:root { --nav-h: var(--nav-h-mobile); }
+@media (min-width: 768px){ :root { --nav-h: var(--nav-h-desktop); } }
+
+html, body, #root { height: 100%; background: var(--bg); color: var(--text); }
+body { overflow: hidden; }
+
+.app {
+  min-height: 100dvh;
+  position: relative;
+}
+
+.viewport {
+  width: 100%;
+  max-width: var(--content-max-w);
+  max-height: min(var(--content-max-h), 100%);
+  overflow: auto;
+  scrollbar-gutter: stable both-edges;
+  background: transparent;
+  padding: 1rem 1rem 1.25rem;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  border-radius: 12px;
+  /* If you want a panel look, uncomment:
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  */
 }

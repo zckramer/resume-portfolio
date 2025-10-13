@@ -32,6 +32,13 @@
     gap: 8px;
 }
 
+.contact h2 {
+    margin: 8px;
+    font-weight: bolder;
+    font-size: 2rem;
+    text-align: center;
+}
+
 .contact .contact-container {
     border: 2px solid grey;
     border-radius: 8px;
@@ -39,4 +46,5 @@
     margin: 16px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
