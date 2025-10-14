@@ -1,42 +1,68 @@
 :root{
+  /* Layout */
   --nav-h-mobile: 56px;
   --nav-h-desktop: 64px;
   --content-max-w: 72ch;
   --content-max-h: 1000px;
 
+  /* Theme */
   --bg: #0f0f0f;
   --panel: #141414;
   --text: #e6e6e6;
   --muted: #a0a0a0;
   --rule: #232323;
+
+  /* Nav theme */
   --nav-bg: rgba(18,18,18,.9);
   --nav-br: #2a2a2a;
   --nav-fg: #d6d6d6;
   --nav-active: #ffffff;
 }
 
+/* Single source of truth for nav height */
 :root { --nav-h: var(--nav-h-mobile); }
-@media (min-width: 768px){ :root { --nav-h: var(--nav-h-desktop); } }
+@media (min-width: 768px) { :root { --nav-h: var(--nav-h-desktop); } }
 
-html, body, #root { height: 100%; background: var(--bg); color: var(--text); }
-body { overflow: hidden; }
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Page itself never scrolls; block scroll chaining into page */
+body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
 
 .app {
   min-height: 100dvh;
   position: relative;
 }
 
+/* Main area fills viewport minus fixed nav. Content scrolls inside .viewport */
+.app-main {
+  padding: env(safe-area-inset-top, 0px) 0 0 0;
+  height: calc(100dvh - var(--nav-h) - env(safe-area-inset-bottom, 0px));
+  display: grid;
+  place-items: center; /* center the scroll container; switch to block if you prefer */
+}
+
+/* The scrollable, constrained content block */
 .viewport {
   width: 100%;
   max-width: var(--content-max-w);
   max-height: min(var(--content-max-h), 100%);
   overflow: auto;
+  overscroll-behavior: contain; /* prevent momentum from bubbling to page */
   scrollbar-gutter: stable both-edges;
+
   background: transparent;
   padding: 1rem 1rem 1.25rem;
   margin: 0 auto;
   border-radius: 12px;
-  /* If you want a panel look, uncomment:
+
+  /* Optional panel look:
   background: var(--panel);
   border: 1px solid var(--rule);
   */

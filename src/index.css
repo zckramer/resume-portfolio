@@ -1,24 +1,19 @@
-
-/* skip link utility */
+/* Skip link utility */
 .skip-link {
-  position: absolute; left: -9999px; top: auto;
+  position: absolute;
+  left: -9999px;
+  top: auto;
+}
+.skip-link:focus {
+  left: 0;
+  top: 0;
+  padding: .5rem;
+  background: #ddd;
+  color: #000;
 }
 
-.skip-link:focus { 
-  left: 0; 
-  top: 0; 
-  padding: .5rem; 
-  background: #ddd; 
-}
-
+/* Delegate base colors to variables for consistency */
 html {
-  background-color: black;
-  color: whitesmoke;
-}
-
-.app-main { 
-  padding: env(safe-area-inset-top, 0px) 0 0 0;
-  height: calc(100dvh - var(--nav-h) - env(safe-area-inset-bottom, 0px));
-  display: grid;
-  place-items: center; /* center the viewport block; change to block if you prefer */
+  background: var(--bg);
+  color: var(--text);
 }

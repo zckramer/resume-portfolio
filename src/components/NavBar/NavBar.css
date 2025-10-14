@@ -1,89 +1,123 @@
 :root {
-  --nav-h: 56px; /* tweak bar height here */
+  /* Nav Justify */
+  /*--nav-justify: space-between; default */
+  /* --nav-justify: flex-start; left align */
+  --nav-justify: flex-end; /* right align */
+
+  /* Nav appearance */
   --nav-bg: rgba(18,18,18,.9);
-  --nav-border: #2a2a2a;
+  --nav-br: #2a2a2a;
   --nav-fg: #d6d6d6;
   --nav-active: #ffffff;
 }
 
-/* Add bottom padding equal to the bar height (+ safe area on iOS) */
-body {
-  padding-block-end: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px));
-  overflow: hidden;
-}
-
+/* Fixed bottom navbar */
 .navbar {
-  user-select: none; 
+  user-select: none;
   position: fixed;
-  inset-inline: 0;
-  inset-block-end: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
   height: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px));
   background: var(--nav-bg);
-  border-top: 1px solid var(--nav-border);
+  border-top: 1px solid var(--nav-br);
   backdrop-filter: blur(6px);
+
   display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: center;
   padding-bottom: env(safe-area-inset-bottom, 0px);
   z-index: 1000;
 }
 
+/* Row layout: spacing and fluid behavior */
 .nav {
-  user-select: none; 
+  user-select: none;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding-inline: clamp(6px, 3vw, 12px);
+  gap: clamp(6px, 2.5vw, 16px);
+
   display: flex;
   flex-direction: row;
-  gap: 1rem;
   align-items: center;
+  justify-content: var(--nav-justify);
+
+  width: 100%;
+  max-width: 680px;
+  min-width: 0;
 }
 
-.nav a[aria-current="page"] {
-  border-color: #aaa; /* outer marker for active page */
-  background: #888;
-  color: black;
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.05); /* makes it look like extra margin */
+/* Allow flex shrinkage */
+.nav li {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
+/* Button styling */
 .nav a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 0.9rem;
+
+  font-size: clamp(12px, 2.9vw, 15px);
+  padding-block: clamp(6px, 1.6vw, 8px);
+  padding-inline: clamp(10px, 3vw, 14px);
+
   border-radius: 9999px;
   line-height: 1;
-  text-decoration: none;  
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  font-size: clamp(12px, 2.8vw, 15px);
+  text-decoration: none;
 
-  color: whitesmoke;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+
+  color: var(--nav-fg);
   background: transparent;
-  border: 2px solid transparent;   /* base border for smooth transitions */
+  border: 2px solid transparent;
+
   transition:
     transform 180ms ease-in-out,
     background-color 160ms ease,
     color 160ms ease,
     border-color 180ms ease,
     box-shadow 160ms ease;
-  will-change: transform;
   transform-origin: center;
 }
 
-/* Active route (NavLink auto-sets aria-current="page") */
+/* Hover / focus */
 .nav a:hover,
 .nav a:focus-visible {
-  user-select: none;
-  transition: all 350ms ease;
   transform: scale(1.1);
   background: #fff;
   color: #262626;
+  outline: none;
 }
 
+/* Active route */
+.nav a[aria-current="page"] {
+  border-color: #aaa;
+  background: #888;
+  color: #000;
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.05);
+}
 
-/* Respect reduced motion */
+/* Adjust hover intensity on small viewports */
+@media (max-width: 380px) {
+  .nav a:hover,
+  .nav a:focus-visible {
+    transform: scale(1.05);
+  }
+}
+
+/* Accessibility and motion */
+@media (prefers-contrast: more) {
+  .nav a { font-size: max(13px, 2.9vw); }
+}
 @media (prefers-reduced-motion: reduce) {
   .nav a { transition: none; }
 }
+
+/* Subtle*
