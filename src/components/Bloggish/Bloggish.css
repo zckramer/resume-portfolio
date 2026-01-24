@@ -1,12 +1,23 @@
 .bloggish {
-	--bg: #0b0d12;
-	--panel: #121622;
-	--panel-soft: #151a2b;
-	--fg: #e8eaf0;
-	--muted: #9aa3b2;
-	--accent: #7aa2f7;
-	--border: #1e253d;
-	--success: #5fb3a2;
+	/* Color system (scoped to Bloggish only) */
+	--bg-0: #0f0f0f;
+	--bg-1: #0f0f0f;
+	--panel: #121a2d;
+	--panel-soft: #0f172b;
+	--fg: #eef1f8;
+	--muted: #aab3c3;
+	--accent: #8ab4ff;
+	--border: #26304d;
+	--success: #74d1be;
+	--divider: rgba(138, 180, 255, 0.28);
+	--divider-ring: rgba(138, 180, 255, 0.12);
+
+	/* Type scale */
+	--text: 1rem;
+	--title: clamp(1.9rem, 2.4vw + 1.15rem, 2.45rem);
+	--h2: 1.08rem;
+	--subtitle: 0.98rem;
+	--small: 0.875rem;
 
 	box-sizing: border-box;
 	color: var(--fg);
@@ -20,7 +31,32 @@
 		Helvetica,
 		Arial,
 		sans-serif;
-	line-height: 1.6;
+	font-size: var(--text);
+	line-height: 1.65;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Typography utilities */
+.bloggish-text {
+	color: inherit;
+	font-size: var(--text);
+	font-weight: 450;
+	margin: 0 0 14px 0;
+}
+
+.bloggish-text:last-child {
+	margin-bottom: 0;
+}
+
+.bloggish-muted {
+	color: var(--muted);
+}
+
+.bloggish-strong,
+.bloggish strong {
+	font-weight: 650;
+	color: var(--fg);
 }
 
 .bloggish *,
@@ -41,9 +77,9 @@
 .bloggish-app {
 	max-width: 1100px;
 	margin: 0 auto;
-	padding: 48px 20px 96px;
+	padding: clamp(28px, 4.5vw, 48px) 20px clamp(64px, 7vw, 96px);
 	border-radius: 14px;
-	background: linear-gradient(180deg, #0b0d12 0%, #0e1220 100%);
+	background: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
 }
 
 /* Header */
@@ -55,21 +91,24 @@
 	gap: 16px;
 }
 
-.bloggish-title {
-	font-size: 2.2rem;
-	font-weight: 600;
+.bloggish-title,
+.bloggish-type-title {
+	font-size: var(--title);
+	font-weight: 650;
 	margin: 0;
 	letter-spacing: -0.02em;
+	line-height: 1.15;
 }
 
-.bloggish-subtitle {
+.bloggish-subtitle,
+.bloggish-type-subtitle {
 	color: var(--muted);
-	font-size: 0.95rem;
+	font-size: var(--subtitle);
 	margin-top: 6px;
 }
 
 .bloggish-status {
-	font-size: 0.85rem;
+	font-size: var(--small);
 	color: var(--success);
 	background: rgba(95, 179, 162, 0.08);
 	border: 1px solid rgba(95, 179, 162, 0.3);
@@ -96,55 +135,80 @@
 	background: linear-gradient(180deg, var(--panel) 0%, var(--panel-soft) 100%);
 	border: 1px solid var(--border);
 	border-radius: 14px;
-	padding: 28px;
+	padding: clamp(18px, 2.4vw, 28px);
 }
 
-.bloggish-panel h2 {
-	font-size: 1.05rem;
+.bloggish-heading {
+	font-size: var(--h2);
 	font-weight: 600;
 	margin: 0 0 16px 0;
 	color: var(--fg);
-}
-
-.bloggish-panel p {
-	margin: 0 0 14px 0;
-}
-
-.bloggish-panel p:last-child {
-	margin-bottom: 0;
+	letter-spacing: -0.01em;
 }
 
 /* Lists */
-.bloggish ul {
+.bloggish-list {
 	padding: 0;
 	margin: 0;
 	list-style: none;
 }
 
-.bloggish li {
+.bloggish-list > li {
 	margin-bottom: 10px;
-	color: var(--fg);
+	color: inherit;
 }
 
-.bloggish-muted {
-	color: var(--muted);
+.bloggish-list > li:last-child {
+	margin-bottom: 0;
+}
+
+/* Separated list style (no <hr/> needed) */
+.bloggish-list--separated > li {
+	margin-bottom: 0;
+}
+
+.bloggish-list--separated > li + li {
+	margin-top: 12px;
+	padding-top: 12px;
+	position: relative;
+}
+
+.bloggish-list--separated > li + li::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: 6px;
+	height: 6px;
+	border-radius: 999px;
+	background: var(--divider);
+	box-shadow: 0 0 0 4px var(--divider-ring);
+	transform: translateY(-50%);
 }
 
 /* Pills */
 .bloggish-pill-list {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 8px;
+	justify-content: flex-start;
+	gap: 10px;
 	margin-top: 12px;
 }
 
 .bloggish-pill {
-	font-size: 0.75rem;
-	padding: 6px 10px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 0.8125rem;
+	line-height: 1.15;
+	padding: 8px 12px;
 	border-radius: 999px;
 	border: 1px solid var(--border);
 	color: var(--muted);
 	background: rgba(255, 255, 255, 0.02);
+	text-align: center;
 }
 
 /* Section spacing */
