@@ -19,14 +19,11 @@ export const ROUTE_PATHS = {
 const Layout = () => {
   return (
     <div className="app">
-      {/* Scrollable viewport-constrained content */}
       <main id="main" className="app-main" role="main">
         <div className="viewport">
           <Outlet />
         </div>
       </main>
-
-      {/* Static bottom nav, never scrolls */}
       <NavBar />
     </div>
   );
@@ -47,21 +44,5 @@ const App = () => {
     </Routes>
   );
 }
-
-// const App = () => {
-  
-//   return (
-//     <>
-//       <NavBar/>
-//       <Routes>
-//         <Route path={ROUTE_PATHS.HOME} element={<Contact />} />
-//         <Route path={ROUTE_PATHS.RESUME} element={<Resume/>} />
-//         <Route path={ROUTE_PATHS.PORTFOLIO} element={<Portfolio />} />
-//         <Route path={ROUTE_PATHS.BLOGGISH} element={<Bloggish />} />
-//         <Route path={ROUTE_PATHS.CONTACT} element={<Contact />} />
-//       </Routes>
-//     </>
-//   )
-// }
 
 export default App
