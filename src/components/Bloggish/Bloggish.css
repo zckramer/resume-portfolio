@@ -139,17 +139,13 @@
 }
 
 /* Entry wrapper (e.g. "About Me") */
-.bloggish-entry {
+.bloggish-panel.bloggish-entry {
+	background: transparent;
+	border: none;
+	border-top: 1px solid var(--border);
+	border-bottom: 1px solid var(--border);
+	border-radius: 0;
 	margin-bottom: 32px;
-}
-
-.bloggish-entry::after {
-	content: '';
-	display: block;
-	margin-top: 24px;
-	height: 1px;
-	background: var(--border);
-	opacity: 0.55;
 }
 
 .bloggish-heading {
