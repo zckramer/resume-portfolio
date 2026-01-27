@@ -1,0 +1,282 @@
+.bloggish {
+	/* Color system (scoped to Bloggish only) */
+	--bg-0: #0f0f0f;
+	--bg-1: #0f0f0f;
+	--panel: #121a2d;
+	--panel-soft: #0f172b;
+	--fg: #eef1f8;
+	--muted: #aab3c3;
+	--accent: #8ab4ff;
+	--border: #26304d;
+	--success: #74d1be;
+	--divider: rgba(138, 180, 255, 0.28);
+	--divider-ring: rgba(138, 180, 255, 0.12);
+
+	/* Type scale */
+	--text: clamp(0.92rem, 0.2vw + 0.88rem, 1rem);
+	--title: clamp(1.9rem, 2.4vw + 1.15rem, 2.45rem);
+	--h2: clamp(1.02rem, 0.25vw + 0.95rem, 1.08rem);
+	--subtitle: clamp(0.9rem, 0.2vw + 0.86rem, 0.98rem);
+	--small: clamp(0.82rem, 0.15vw + 0.78rem, 0.875rem);
+
+	box-sizing: border-box;
+	color: var(--fg);
+	font-family:
+		ui-sans-serif,
+		system-ui,
+		-apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Roboto,
+		Helvetica,
+		Arial,
+		sans-serif;
+	font-size: var(--text);
+	line-height: 1.65;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Typography utilities */
+.bloggish-text {
+	color: inherit;
+	font-size: var(--text);
+	font-weight: 450;
+	margin: 0 0 14px 0;
+}
+
+.bloggish-text:last-child {
+	margin-bottom: 0;
+}
+
+.bloggish-muted {
+	color: var(--muted);
+}
+
+.bloggish-strong,
+.bloggish strong {
+	font-weight: 650;
+	color: var(--fg);
+}
+
+.bloggish *,
+.bloggish *::before,
+.bloggish *::after {
+	box-sizing: inherit;
+}
+
+.bloggish a {
+	color: var(--accent);
+	text-decoration: none;
+}
+
+.bloggish a:hover {
+	text-decoration: underline;
+}
+
+.bloggish-app {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: clamp(28px, 4.5vw, 48px) clamp(14px, 4vw, 20px)
+		clamp(64px, 7vw, 96px);
+	border-radius: 14px;
+	background: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+}
+
+/* Header */
+.bloggish-header {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	align-items: center;
+	margin-bottom: 40px;
+	gap: 16px;
+}
+
+.bloggish-title,
+.bloggish-type-title {
+	font-size: var(--title);
+	font-weight: 650;
+	margin: 0;
+	letter-spacing: -0.02em;
+	line-height: 1.15;
+}
+
+.bloggish-subtitle,
+.bloggish-type-subtitle {
+	color: var(--muted);
+	font-size: var(--subtitle);
+	margin-top: 6px;
+}
+
+.bloggish-status {
+	font-size: var(--small);
+	color: var(--success);
+	background: rgba(95, 179, 162, 0.08);
+	border: 1px solid rgba(95, 179, 162, 0.3);
+	padding: 6px 12px;
+	border-radius: 999px;
+	white-space: nowrap;
+}
+
+.bloggish-entry-meta {
+	font-size: var(--small);
+	color: var(--muted);
+	white-space: nowrap;
+}
+
+.bloggish-panelHeadingRow {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 16px;
+	flex-wrap: wrap;
+	margin: 0 0 16px 0;
+}
+
+.bloggish-panelHeadingRow .bloggish-heading {
+	margin: 0;
+}
+
+.bloggish-panelHeadingAside {
+	font-size: var(--small);
+	color: var(--muted);
+	white-space: nowrap;
+}
+
+/* Layout */
+.bloggish-grid {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: clamp(16px, 2.4vw, 24px);
+}
+
+/* Slightly denser typography in the aside column */
+.bloggish-grid > aside {
+	text-align: center;
+	color: var(--muted);
+	--text: clamp(0.86rem, 0.18vw + 0.82rem, 0.95rem);
+	--h2: clamp(0.96rem, 0.22vw + 0.9rem, 1.02rem);
+	--small: clamp(0.78rem, 0.12vw + 0.74rem, 0.84rem);
+	--subtitle: clamp(0.86rem, 0.18vw + 0.82rem, 0.94rem);
+}
+
+.bloggish-grid > aside .bloggish-pill-list {
+	justify-content: center;
+}
+
+@media (max-width: 900px) {
+	.bloggish-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Panels */
+.bloggish-panel {
+	background: linear-gradient(180deg, var(--panel) 0%, var(--panel-soft) 100%);
+	border: 1px solid var(--border);
+	border-radius: 14px;
+	padding: clamp(8px, 1.5vw, 14px);
+}
+
+/* Entry wrapper (e.g. "About Me") */
+.bloggish-panel.bloggish-entry {
+	background: transparent;
+	border: none;
+	border-top: 1px solid var(--border);
+	border-radius: 0;
+	margin-bottom: 32px;
+}
+
+.bloggish-heading {
+	font-size: var(--h2);
+	font-weight: 600;
+	margin: 0 0 12px 0;
+	color: var(--fg);
+	letter-spacing: -0.01em;
+}
+
+/* Lists */
+.bloggish-list {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.bloggish-list > li {
+	margin-bottom: 10px;
+	color: inherit;
+}
+
+.bloggish-list > li:last-child {
+	margin-bottom: 0;
+}
+
+/* Separated list style (no <hr/> needed) */
+.bloggish-list--separated > li {
+	margin-bottom: 0;
+}
+
+.bloggish-list--separated > li + li {
+	margin-top: 12px;
+	padding-top: 12px;
+	position: relative;
+}
+
+.bloggish-list--separated > li + li::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: 6px;
+	height: 6px;
+	border-radius: 999px;
+	background: var(--divider);
+	box-shadow: 0 0 0 4px var(--divider-ring);
+	transform: translateY(-50%);
+}
+
+/* Pills */
+.bloggish-pill-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	gap: 10px;
+	margin-top: 12px;
+}
+
+.bloggish-pill {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 0.8125rem;
+	line-height: 1.15;
+	padding: 8px 12px;
+	border-radius: 999px;
+	border: 1px solid var(--border);
+	color: var(--muted);
+	background: rgba(255, 255, 255, 0.02);
+	text-align: center;
+}
+
+/* Section spacing */
+.bloggish-stack {
+	display: flex;
+	flex-direction: column;
+	gap: clamp(16px, 2.4vw, 24px);
+}
+
+/* Footer */
+.bloggish-footer {
+	margin-top: 48px;
+	padding-top: 24px;
+	border-top: 1px solid var(--border);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 12px;
+	font-size: 0.85rem;
+	color: var(--muted);
+}

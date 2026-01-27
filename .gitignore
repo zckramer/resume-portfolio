@@ -11,6 +11,9 @@ node_modules
 *.local
 dist/
 
+# Personal authoring notes
+.todosBloggish.txt
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

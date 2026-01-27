@@ -1,123 +1,127 @@
 :root {
-  /* Nav Justify */
-  /*--nav-justify: space-between; default */
-  /* --nav-justify: flex-start; left align */
-  --nav-justify: flex-end; /* right align */
+	/* Nav Justify */
+	/*--nav-justify: space-between; default */
+	/* --nav-justify: flex-start; left align */
+	--nav-justify: flex-end; /* right align */
 
-  /* Nav appearance */
-  --nav-bg: rgba(18,18,18,.9);
-  --nav-br: #2a2a2a;
-  --nav-fg: #d6d6d6;
-  --nav-active: #ffffff;
+	/* Nav appearance */
+	--nav-bg: rgba(18, 18, 18, 0.9);
+	--nav-br: #2a2a2a;
+	--nav-fg: #d6d6d6;
+	--nav-active: #ffffff;
 }
 
 /* Fixed bottom navbar */
 .navbar {
-  user-select: none;
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
+	user-select: none;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
 
-  height: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px));
-  background: var(--nav-bg);
-  border-top: 1px solid var(--nav-br);
-  backdrop-filter: blur(6px);
+	height: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px));
+	background: var(--nav-bg);
+	border-top: 1px solid var(--nav-br);
+	backdrop-filter: blur(6px);
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: env(safe-area-inset-bottom, 0px);
+	z-index: 1000;
 }
 
 /* Row layout: spacing and fluid behavior */
 .nav {
-  user-select: none;
-  list-style: none;
-  margin: 0;
-  padding-inline: clamp(6px, 3vw, 12px);
-  gap: clamp(6px, 2.5vw, 16px);
+	user-select: none;
+	list-style: none;
+	margin: 0;
+	padding-inline: clamp(6px, 3vw, 12px);
+	gap: clamp(6px, 2.5vw, 16px);
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: var(--nav-justify);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: var(--nav-justify);
 
-  width: 100%;
-  max-width: 680px;
-  min-width: 0;
+	width: 100%;
+	max-width: 680px;
+	min-width: 0;
 }
 
 /* Allow flex shrinkage */
 .nav li {
-  flex: 1 1 0;
-  min-width: 0;
+	flex: 1 1 0;
+	min-width: 0;
 }
 
 /* Button styling */
 .nav a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 
-  font-size: clamp(12px, 2.9vw, 15px);
-  padding-block: clamp(6px, 1.6vw, 8px);
-  padding-inline: clamp(10px, 3vw, 14px);
+	font-size: clamp(12px, 2.9vw, 15px);
+	padding-block: clamp(6px, 1.6vw, 8px);
+	padding-inline: clamp(10px, 3vw, 14px);
 
-  border-radius: 9999px;
-  line-height: 1;
-  text-decoration: none;
+	border-radius: 9999px;
+	line-height: 1;
+	text-decoration: none;
 
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	min-width: 0;
 
-  color: var(--nav-fg);
-  background: transparent;
-  border: 2px solid transparent;
+	color: var(--nav-fg);
+	background: transparent;
+	border: 2px solid transparent;
 
-  transition:
-    transform 180ms ease-in-out,
-    background-color 160ms ease,
-    color 160ms ease,
-    border-color 180ms ease,
-    box-shadow 160ms ease;
-  transform-origin: center;
+	transition:
+		transform 180ms ease-in-out,
+		background-color 160ms ease,
+		color 160ms ease,
+		border-color 180ms ease,
+		box-shadow 160ms ease;
+	transform-origin: center;
 }
 
 /* Hover / focus */
 .nav a:hover,
 .nav a:focus-visible {
-  transform: scale(1.1);
-  background: #fff;
-  color: #262626;
-  outline: none;
+	transform: scale(1.1);
+	background: #fff;
+	color: #262626;
+	outline: none;
 }
 
 /* Active route */
-.nav a[aria-current="page"] {
-  border-color: #aaa;
-  background: #888;
-  color: #000;
-  box-shadow: 0 0 0 4px rgba(255,255,255,0.05);
+.nav a[aria-current='page'] {
+	border-color: #aaa;
+	background: #888;
+	color: #000;
+	box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.05);
 }
 
 /* Adjust hover intensity on small viewports */
 @media (max-width: 380px) {
-  .nav a:hover,
-  .nav a:focus-visible {
-    transform: scale(1.05);
-  }
+	.nav a:hover,
+	.nav a:focus-visible {
+		transform: scale(1.05);
+	}
 }
 
 /* Accessibility and motion */
 @media (prefers-contrast: more) {
-  .nav a { font-size: max(13px, 2.9vw); }
+	.nav a {
+		font-size: max(13px, 2.9vw);
+	}
 }
 @media (prefers-reduced-motion: reduce) {
-  .nav a { transition: none; }
+	.nav a {
+		transition: none;
+	}
 }
 
-/* Subtle*
+/* Subtle */
