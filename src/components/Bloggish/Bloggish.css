@@ -13,11 +13,11 @@
 	--divider-ring: rgba(138, 180, 255, 0.12);
 
 	/* Type scale */
-	--text: 1rem;
+	--text: clamp(0.92rem, 0.2vw + 0.88rem, 1rem);
 	--title: clamp(1.9rem, 2.4vw + 1.15rem, 2.45rem);
-	--h2: 1.08rem;
-	--subtitle: 0.98rem;
-	--small: 0.875rem;
+	--h2: clamp(1.02rem, 0.25vw + 0.95rem, 1.08rem);
+	--subtitle: clamp(0.9rem, 0.2vw + 0.86rem, 0.98rem);
+	--small: clamp(0.82rem, 0.15vw + 0.78rem, 0.875rem);
 
 	box-sizing: border-box;
 	color: var(--fg);
@@ -77,7 +77,8 @@
 .bloggish-app {
 	max-width: 1100px;
 	margin: 0 auto;
-	padding: clamp(28px, 4.5vw, 48px) 20px clamp(64px, 7vw, 96px);
+	padding: clamp(28px, 4.5vw, 48px) clamp(14px, 4vw, 20px)
+		clamp(64px, 7vw, 96px);
 	border-radius: 14px;
 	background: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
 }
@@ -117,11 +118,50 @@
 	white-space: nowrap;
 }
 
+.bloggish-entry-meta {
+	font-size: var(--small);
+	color: var(--muted);
+	white-space: nowrap;
+}
+
+.bloggish-panelHeadingRow {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 16px;
+	flex-wrap: wrap;
+	margin: 0 0 16px 0;
+}
+
+.bloggish-panelHeadingRow .bloggish-heading {
+	margin: 0;
+}
+
+.bloggish-panelHeadingAside {
+	font-size: var(--small);
+	color: var(--muted);
+	white-space: nowrap;
+}
+
 /* Layout */
 .bloggish-grid {
 	display: grid;
 	grid-template-columns: 2fr 1fr;
-	gap: 24px;
+	gap: clamp(16px, 2.4vw, 24px);
+}
+
+/* Slightly denser typography in the aside column */
+.bloggish-grid > aside {
+	text-align: center;
+	color: var(--muted);
+	--text: clamp(0.86rem, 0.18vw + 0.82rem, 0.95rem);
+	--h2: clamp(0.96rem, 0.22vw + 0.9rem, 1.02rem);
+	--small: clamp(0.78rem, 0.12vw + 0.74rem, 0.84rem);
+	--subtitle: clamp(0.86rem, 0.18vw + 0.82rem, 0.94rem);
+}
+
+.bloggish-grid > aside .bloggish-pill-list {
+	justify-content: center;
 }
 
 @media (max-width: 900px) {
@@ -135,7 +175,7 @@
 	background: linear-gradient(180deg, var(--panel) 0%, var(--panel-soft) 100%);
 	border: 1px solid var(--border);
 	border-radius: 14px;
-	padding: clamp(18px, 2.4vw, 28px);
+	padding: clamp(8px, 1.5vw, 14px);
 }
 
 /* Entry wrapper (e.g. "About Me") */
@@ -143,7 +183,6 @@
 	background: transparent;
 	border: none;
 	border-top: 1px solid var(--border);
-	border-bottom: 1px solid var(--border);
 	border-radius: 0;
 	margin-bottom: 32px;
 }
@@ -151,7 +190,7 @@
 .bloggish-heading {
 	font-size: var(--h2);
 	font-weight: 600;
-	margin: 0 0 16px 0;
+	margin: 0 0 12px 0;
 	color: var(--fg);
 	letter-spacing: -0.01em;
 }
@@ -225,7 +264,7 @@
 .bloggish-stack {
 	display: flex;
 	flex-direction: column;
-	gap: 24px;
+	gap: clamp(16px, 2.4vw, 24px);
 }
 
 /* Footer */

@@ -1,3 +1,4 @@
+import BloggishEntry from './BloggishEntry';
 import BloggishPanel from './BloggishPanel';
 import BloggishListPanel from './BloggishListPanel';
 import BloggishPillList from './BloggishPillList';
@@ -28,18 +29,14 @@ const AboutMeEntry: React.FC = () => {
     ];
 
     return (
-        <BloggishPanel heading="About Me" className="bloggish-entry">
-            <header className="bloggish-header">
-                <div>
-                    <h1 className="bloggish-title">Zack Kramer</h1>
-                    <div className="bloggish-subtitle">
-                        Developer Experience Engineer · Tooling · Interactive Systems
-                    </div>
-                </div>
-            </header>
-
-            <section className="bloggish-grid">
-                <div className="bloggish-stack">
+        <BloggishEntry
+            entryTitle="About Me"
+            headerTitle="Zack Kramer"
+            headerSubtitle="Developer Experience Engineer · Tooling · Interactive Systems"
+            dateOfPost="1/27/2026"
+            headerVariant="primary"
+            left={
+                <>
                     <BloggishPanel heading="Overview">
                         <p className="bloggish-text">
                             I design systems that help other builders think more clearly.
@@ -85,18 +82,19 @@ const AboutMeEntry: React.FC = () => {
                             correct path obvious.
                         </p>
                     </BloggishPanel>
-                </div>
-
-                <aside className="bloggish-stack">
+                </>
+            }
+            right={
+                <>
                     <BloggishListPanel heading="What I Work On" items={whatIWorkOn} />
                     <BloggishListPanel heading="How I Think" muted items={howIThink} />
 
                     <BloggishPanel heading="Interests">
                         <BloggishPillList pills={interests} />
                     </BloggishPanel>
-                </aside>
-            </section>
-        </BloggishPanel>
+                </>
+            }
+        />
     );
 };
 
