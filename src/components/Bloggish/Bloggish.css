@@ -138,6 +138,20 @@
 	padding: clamp(18px, 2.4vw, 28px);
 }
 
+/* Entry wrapper (e.g. "About Me") */
+.bloggish-entry {
+	margin-bottom: 32px;
+}
+
+.bloggish-entry::after {
+	content: '';
+	display: block;
+	margin-top: 24px;
+	height: 1px;
+	background: var(--border);
+	opacity: 0.55;
+}
+
 .bloggish-heading {
 	font-size: var(--h2);
 	font-weight: 600;
