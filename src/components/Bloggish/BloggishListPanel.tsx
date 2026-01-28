@@ -2,6 +2,7 @@ import BloggishPanel from './BloggishPanel';
 
 type BloggishListPanelProps = {
     heading: string;
+    headingLevel?: 2 | 3 | 4 | 5 | 6;
     items: Array<React.ReactNode>;
     muted?: boolean;
     separated?: boolean;
@@ -10,6 +11,7 @@ type BloggishListPanelProps = {
 
 const BloggishListPanel: React.FC<BloggishListPanelProps> = ({
     heading,
+    headingLevel,
     items,
     muted = false,
     separated = true,
@@ -26,7 +28,7 @@ const BloggishListPanel: React.FC<BloggishListPanelProps> = ({
         .join(' ');
 
     return (
-        <BloggishPanel heading={heading}>
+        <BloggishPanel heading={heading} headingLevel={headingLevel}>
             <ul className={listClassName}>
                 {items.map((item, index) => (
                     <li key={index}>{item}</li>

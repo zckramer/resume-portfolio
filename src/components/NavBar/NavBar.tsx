@@ -1,7 +1,8 @@
 import './NavBar.css';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ROUTE_PATHS } from '../../App';
+import { ROUTE_PATHS } from '../../routes';
+import Modal from '../Modal/Modal';
 
 type ContactChoice = 'email' | 'github' | 'linkedin';
 
@@ -12,6 +13,10 @@ const NavBar = () => {
     const firstActionRef = useRef<HTMLButtonElement | null>(null);
     const copiedTimeoutRef = useRef<number | null>(null);
 
+    const contactDialogId = 'contact-dialog';
+    const contactDialogTitleId = 'contact-dialog-title';
+    const contactDialogHelpId = 'contact-dialog-help';
+
     const closeContact = () => {
         setIsContactOpen(false);
         setCopiedChoice(null);
@@ -19,29 +24,11 @@ const NavBar = () => {
             window.clearTimeout(copiedTimeoutRef.current);
             copiedTimeoutRef.current = null;
         }
-        // Return focus to the trigger for keyboard users.
-        queueMicrotask(() => contactButtonRef.current?.focus());
     };
 
     const openContact = () => {
         setIsContactOpen(true);
-        // Focus the first action for keyboard users.
-        queueMicrotask(() => firstActionRef.current?.focus());
     };
-
-    useEffect(() => {
-        if (!isContactOpen) return;
-
-        const onKeyDown = (event: KeyboardEvent) => {
-            if (event.key === 'Escape') {
-                event.preventDefault();
-                closeContact();
-            }
-        };
-
-        document.addEventListener('keydown', onKeyDown);
-        return () => document.removeEventListener('keydown', onKeyDown);
-    }, [isContactOpen]);
 
     useEffect(() => {
         return () => {
@@ -116,6 +103,7 @@ const NavBar = () => {
                                 onClick={openContact}
                                 aria-haspopup="dialog"
                                 aria-expanded={isContactOpen}
+                                aria-controls={contactDialogId}
                             >
                                 {destination.name}
                             </button>
@@ -124,67 +112,74 @@ const NavBar = () => {
                 </ul>
             </nav>
 
-            {isContactOpen ? (
+            <Modal
+                isOpen={isContactOpen}
+                onRequestClose={closeContact}
+                overlayClassName="contactModalOverlay"
+                containerClassName="contactModalStack"
+                initialFocusRef={firstActionRef}
+                restoreFocusRef={contactButtonRef}
+            >
+                <div className="contactModalTopBar">
+                    <span id={contactDialogHelpId} className="contactModalHelp">
+                        Esc to close
+                    </span>
+
+                    <button
+                        type="button"
+                        className="contactModalX"
+                        onClick={closeContact}
+                        aria-label="Close contact dialog"
+                    >
+                        ×
+                    </button>
+                </div>
+
                 <div
-                    className="contactModalOverlay"
-                    role="presentation"
-                    onMouseDown={(event) => {
-                        if (event.target === event.currentTarget) closeContact();
-                    }}
+                    id={contactDialogId}
+                    className="contactModal"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby={contactDialogTitleId}
+                    aria-describedby={contactDialogHelpId}
                 >
-                    <div className="contactModalStack">
-                        <div className="contactModalTopBar">
-                            <button
-                                type="button"
-                                className="contactModalX"
-                                onClick={closeContact}
-                                aria-label="Close contact dialog"
-                            >
-                                ×
-                            </button>
-                        </div>
+                    <h2 id={contactDialogTitleId} className="contactModalTitle">
+                        Contact
+                    </h2>
 
-                        <div
-                            className="contactModal"
-                            role="dialog"
-                            aria-modal="true"
-                            aria-label="Contact options"
-                        >
-                            <div className="contactModalActions">
-                                {(Object.keys(contactValues) as ContactChoice[]).map((choice) => (
-                                    <div key={choice} className="contactModalActionWrap">
-                                        <div className="contactModalPrimaryWrap">
-                                            <button
-                                                ref={choice === 'email' ? firstActionRef : undefined}
-                                                type="button"
-                                                className="contactModalAction"
-                                                onClick={() => void handleContactChoice(choice)}
-                                                aria-label={`Copy ${contactValues[choice].label} to clipboard`}
-                                            >
-                                                {contactValues[choice].label}
-                                            </button>
-                                            {copiedChoice === choice ? (
-                                                <span className="contactModalTooltip" role="status" aria-live="polite">
-                                                    Copied
-                                                </span>
-                                            ) : null}
-                                        </div>
+                    <div className="contactModalActions">
+                        {(Object.keys(contactValues) as ContactChoice[]).map((choice) => (
+                            <div key={choice} className="contactModalActionWrap">
+                                <div className="contactModalPrimaryWrap">
+                                    <button
+                                        ref={choice === 'email' ? firstActionRef : undefined}
+                                        type="button"
+                                        className="contactModalAction"
+                                        onClick={() => void handleContactChoice(choice)}
+                                        aria-label={`Copy ${contactValues[choice].label} to clipboard`}
+                                    >
+                                        {contactValues[choice].label}
+                                    </button>
+                                    {copiedChoice === choice ? (
+                                        <span className="contactModalTooltip" role="status" aria-live="polite">
+                                            Copied
+                                        </span>
+                                    ) : null}
+                                </div>
 
-                                        <button
-                                            type="button"
-                                            className="contactModalGoAction"
-                                            onClick={() => { /* placeholder */ }}
-                                            aria-label={`Go (placeholder) for ${contactValues[choice].label}`}
-                                        >
-                                            go
-                                        </button>
-                                    </div>
-                                ))}
+                                <button
+                                    type="button"
+                                    className="contactModalGoAction"
+                                    onClick={() => { /* placeholder */ }}
+                                    aria-label={`Go (placeholder) for ${contactValues[choice].label}`}
+                                >
+                                    go
+                                </button>
                             </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
-            ) : null}
+            </Modal>
         </>
     );
 };

@@ -155,7 +155,15 @@
 
 .contactModalTopBar {
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+}
+
+.contactModalHelp {
+	font-size: 0.85rem;
+	color: rgba(255, 255, 255, 0.7);
+	user-select: none;
 }
 
 .contactModalX {
@@ -193,6 +201,13 @@
 	color: #ffffff;
 	box-shadow: 0 20px 55px rgba(0, 0, 0, 0.45);
 	padding: 14px;
+}
+
+.contactModalTitle {
+	margin: 0 0 10px 0;
+	font-size: 1rem;
+	font-weight: 700;
+	letter-spacing: 0.01em;
 }
 
 .contactModalActions {
