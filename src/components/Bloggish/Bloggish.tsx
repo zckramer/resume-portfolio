@@ -10,13 +10,6 @@ const Bloggish: React.FC = () => {
                 {entries.map(({ id, Component }) => (
                     <Component key={id} />
                 ))}
-
-                <footer className="bloggish-footer">
-                    <div>
-                        <a href="https://www.linkedin.com/in/zckramer/">LinkedIn</a> · <a href="https://github.com/zckramer">GitHub</a> ·{' '}
-                        <a href="mailto:zckramer83@gmail.com">Email</a>
-                    </div>
-                </footer>
             </main>
         </div>
     );
