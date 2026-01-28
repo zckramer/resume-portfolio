@@ -31,13 +31,10 @@ const AboutMeEntry: React.FC = () => {
     return (
         <BloggishEntry
             entryTitle="About Me"
-            headerTitle="Zack Kramer"
-            headerSubtitle="Developer Experience Engineer · Tooling · Interactive Systems"
             dateOfPost="1/27/2026"
-            headerVariant="primary"
             left={
                 <>
-                    <BloggishPanel heading="Overview">
+                    <BloggishPanel heading="Overview" headingLevel={3}>
                         <p className="bloggish-text">
                             I design systems that help other builders think more clearly.
                         </p>
@@ -52,7 +49,7 @@ const AboutMeEntry: React.FC = () => {
                         </p>
                     </BloggishPanel>
 
-                    <BloggishPanel heading="Selected System">
+                    <BloggishPanel heading="Selected System" headingLevel={3}>
                         <p className="bloggish-text">
                             <strong>AI-Aware Developer Context System — Effity Labs</strong>
                         </p>
@@ -72,7 +69,7 @@ const AboutMeEntry: React.FC = () => {
                         </p>
                     </BloggishPanel>
 
-                    <BloggishPanel heading="Internal Platforms">
+                    <BloggishPanel heading="Internal Platforms" headingLevel={3}>
                         <p className="bloggish-text">
                             Across enterprise and startup environments, I’ve built and maintained internal platforms,
                             dashboards, configuration tools, and shared component libraries used by multiple teams.
@@ -86,10 +83,10 @@ const AboutMeEntry: React.FC = () => {
             }
             right={
                 <>
-                    <BloggishListPanel heading="What I Work On" items={whatIWorkOn} />
-                    <BloggishListPanel heading="How I Think" muted items={howIThink} />
+                    <BloggishListPanel heading="What I Work On" headingLevel={3} items={whatIWorkOn} />
+                    <BloggishListPanel heading="How I Think" headingLevel={3} muted items={howIThink} />
 
-                    <BloggishPanel heading="Interests">
+                    <BloggishPanel heading="Interests" headingLevel={3}>
                         <BloggishPillList pills={interests} />
                     </BloggishPanel>
                 </>

@@ -4,25 +4,20 @@ import { Routes, Route, Outlet } from "react-router-dom";
 import Resume from './components/Resume/Resume';
 import Portfolio from './components/Portfolio/Portfolio';
 import Bloggish from './components/Bloggish/Bloggish';
-
-const BASE_URL_ROUTE = '/resume-portfolio';
-
-export const ROUTE_PATHS = {
-  HOME: BASE_URL_ROUTE + '/',
-  RESUME: BASE_URL_ROUTE + '/resume',
-  PORTFOLIO: BASE_URL_ROUTE + '/portfolio',
-  BLOGGISH: BASE_URL_ROUTE + '/bloggish'
-}
+import { ROUTE_PATHS } from './routes';
+import RouteFocusManager from './components/a11y/RouteFocusManager';
 
 const Layout = () => {
   return (
     <div className="app">
-      <main id="main" className="app-main" role="main">
-        <div className="viewport">
+      <a className="skip-link" href="#viewport">Skip to content</a>
+      <RouteFocusManager />
+      <NavBar />
+      <main id="main" className="app-main" role="main" tabIndex={-1}>
+        <div id="viewport" className="viewport" tabIndex={-1}>
           <Outlet />
         </div>
       </main>
-      <NavBar />
     </div>
   );
 };
